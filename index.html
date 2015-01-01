@@ -1,0 +1,206 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Pathwar API</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  margin-left: 3px;
+  color: #c7254e;
+  background-color: rgba(255,255,255,0.7);
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item:hover {
+  background-color: #f8f8f8;
+  border-left: 2px solid #555;
+  padding-left: 15px;
+}
+.indent {
+  display: block;
+  text-indent: 16px;
+}
+.list-group-item {
+  padding-left: 16px;
+}
+.list-group-item .toggle .open {
+  display: block;
+}
+.list-group-item .toggle .closed {
+  display: none;
+}
+.list-group-item.collapsed .toggle .open {
+  display: none;
+}
+.list-group-item.collapsed .toggle .closed {
+  display: block;
+}
+a.list-group-item {
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  font-size: 15px;
+  background-color: #f5f5f5;
+}
+a.list-group-item.heading:hover {
+  background-color: #f8f8f8;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+.list-group-item a span.closed {
+  display: none;
+}
+.list-group-item a span.open {
+  display: block;
+}
+.list-group-item a.collapsed span.closed {
+  display: block;
+}
+.list-group-item a.collapsed span.open {
+  display: none;
+}
+#nav {
+  width: inherit;
+  margin-top: 38px;
+  max-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    max-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a data-toggle="" data-target="#people-menu" href="#people" class="list-group-item heading collapsed">People</a><div id="people-menu"><a href="#people-user" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>User</a><a href="#people-organization" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Organization</a></div></div><div class="list-group"><a data-toggle="" data-target="#level-menu" href="#level" class="list-group-item heading collapsed">Level</a><div id="level-menu"><a href="#level-level" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Level</a></div></div><div class="list-group"><a data-toggle="" data-target="#coupon-menu" href="#coupon" class="list-group-item heading collapsed">Coupon</a><div id="coupon-menu"><a href="#coupon-coupon" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Coupon</a></div></div><div class="list-group"><a data-toggle="" data-target="#achievement-menu" href="#achievement" class="list-group-item heading collapsed">Achievement</a><div id="achievement-menu"><a href="#achievement-achievement" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Achievement</a></div></div></nav></div><div class="col-md-8"><div><header><div class="page-header"><h1 id="top">Pathwar API</h1></div></header><div class="description"><p>Official Pathwar REST Api</p>
+<h2>Authentication</h2>
+<p>To be defined</p>
+<h2>Media Types</h2>
+<p>This API uses the json media-type to represent resources states and affordances.</p>
+<p>Requests with a message-body are using plain JSON to set or update resource states.</p>
+<h2>Error States</h2>
+<p>The common <a href="https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md">HTTP Response Status Codes</a> are used.</p>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="people">People&nbsp;<a href="#people"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>This section describes about the People</p>
+<h4 id="people-user">User&nbsp;<a href="#people-user"><i class="fa fa-link"></i></a></h4><p>This resource represents one particular user identified by its <em>id</em>.</p>
+<section id="people-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User</span></div><div style="float:left"><a href="#people-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/{id}</code></div></div><div class="panel-body"><p>Return the information for the User</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The id of the User.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#e59e4abc26038f763a7bb1a98f21ff12" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e59e4abc26038f763a7bb1a98f21ff12" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#aeb54ff6793b8e2e90f92c4b499557dd" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="aeb54ff6793b8e2e90f92c4b499557dd" class="list-group-item panel-collapse collapse"><div class="description"><p>JSON representation of User resource.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"m1ch3l"</span></span>,
+  "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"04-02-1942"</span></span>,
+  "<span class="hljs-attribute">organization_id</span>": <span class="hljs-value"><span class="hljs-string">"xxxx-xxxxxx-xxxxxx-xxxx"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="people-organization">Organization&nbsp;<a href="#people-organization"><i class="fa fa-link"></i></a></h4><p>This resource represents one particular organization identified by its <em>id</em>.</p>
+<section id="people-organization-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Organization</span></div><div style="float:left"><a href="#people-organization-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/organization/{id}</code></div></div><div class="panel-body"><p>Return the information for the Organization</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0e6fddd5abf08f204670b5edd2312d31" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0e6fddd5abf08f204670b5edd2312d31" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#dde06d65435e0b9c673419a795599d8b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="dde06d65435e0b9c673419a795599d8b" class="list-group-item panel-collapse collapse"><div class="description"><p>JSON representation of Organization resource.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"ulteam"</span></span>,
+  "<span class="hljs-attribute">members</span>": <span class="hljs-value">[
+    <span class="hljs-string">"xxxx-xxxxxx-xxxxxx-xxxx"</span>,
+    <span class="hljs-string">"xxxx-xxxxxx-xxxxxx-xxxx"</span>,
+  ]
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="level">Level&nbsp;<a href="#level"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>This section describes about the Level</p>
+<h4 id="level-level">Level&nbsp;<a href="#level-level"><i class="fa fa-link"></i></a></h4><p>This resource represents one particular level identified by its <em>id</em>.</p>
+<section id="level-level-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Level</span></div><div style="float:left"><a href="#level-level-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/level/{id}</code></div></div><div class="panel-body"><p>Return the information for the Level</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#32aa4ae5f86a1a5cca46e0428f015604" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="32aa4ae5f86a1a5cca46e0428f015604" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9be20c9e58843836ccba32c1e2081958" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9be20c9e58843836ccba32c1e2081958" class="list-group-item panel-collapse collapse"><div class="description"><p>JSON representation of a Level resource.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"pwnland"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"pwnland is cool"</span></span>,
+  "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">"Pathwar Team (@pathwar_net)"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="coupon">Coupon&nbsp;<a href="#coupon"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>This section describes about the Coupon</p>
+<h4 id="coupon-coupon">Coupon&nbsp;<a href="#coupon-coupon"><i class="fa fa-link"></i></a></h4><p>This resource represents one particular coupon identified by its <em>id</em>.</p>
+<section id="coupon-coupon-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Achievement</span></div><div style="float:left"><a href="#coupon-coupon-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/coupon/{id}</code></div></div><div class="panel-body"><p>Return the information for the Achievement</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#4b3116c5d6dd6195598cdc9cb48d9dd1" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4b3116c5d6dd6195598cdc9cb48d9dd1" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#429b7a8d572e806e97dfc016d078036d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="429b7a8d572e806e97dfc016d078036d" class="list-group-item panel-collapse collapse"><div class="description"><p>JSON representation of a Achievement resource.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"hack the planet"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Finish all the levels"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="achievement">Achievement&nbsp;<a href="#achievement"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>This section describes about the Achievement</p>
+<h4 id="achievement-achievement">Achievement&nbsp;<a href="#achievement-achievement"><i class="fa fa-link"></i></a></h4><p>This resource represents one particular achievement identified by its <em>id</em>.</p>
+<section id="achievement-achievement-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Achievement</span></div><div style="float:left"><a href="#achievement-achievement-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/achievement/{id}</code></div></div><div class="panel-body"><p>Return the information for the Achievement</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0c7adc0df277913edce64a6b451737f0" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0c7adc0df277913edce64a6b451737f0" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a557b02a42d4dad068e5eadd56168154" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a557b02a42d4dad068e5eadd56168154" class="list-group-item panel-collapse collapse"><div class="description"><p>JSON representation of a Achievement resource.</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"hack the planet"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Finish all the levels"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 01 Jan 2015</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script></html>
