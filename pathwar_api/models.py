@@ -777,9 +777,9 @@ class Organization(BaseModel):
             if original['session'] == Session.world_session()['_id']:
                 abort(422, "You cannot change your team name on world session")
 
-            if Organization.find_one({'name': item['login']}):
+            if Organization.find_one({'name': item['name']}):
                 abort(422, "Name already taken")
-            if User.find_one({'login': item['login']}):
+            if User.find_one({'login': item['name']}):
                 abort(422, "Name already taken")
 
             item['last_name'] = original['name']
