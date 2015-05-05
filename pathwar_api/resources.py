@@ -33,12 +33,12 @@ coupons = {
     # collection
     'resource_methods': ['GET', 'POST'],
     'public_methods': [],
-    'allowed_read_roles': ['moderator', 'admin'],
-    'allowed_write_roles': ['moderator', 'admin'],
+    'allowed_read_roles': ['moderator', 'admin', 'm1ch3l'],
+    'allowed_write_roles': ['moderator', 'admin', 'm1ch3l'],
     # item
     'item_methods': ['GET', 'PATCH'],
     'public_item_methods': [],
-    'allowed_item_read_roles': ['moderator', 'admin'],
+    'allowed_item_read_roles': ['moderator', 'admin', 'm1ch3l'],
     'allowed_item_write_roles': ['moderator', 'admin'],
 
     'schema': {
@@ -1362,7 +1362,7 @@ activities = {
                 },
             },
             'public_methods': [],
-            'allowed_read_roles': ['user', 'moderator', 'admin'],
+            'allowed_read_roles': ['user', 'moderator', 'admin', 'm1ch3l'],
             'allowed_item_read_roles': ['user', 'moderator', 'admin'],
             'allowed_write_roles': [],
             'allowed_item_write_roles': [],
@@ -1782,9 +1782,16 @@ users = {
         },
         'role': {
             'type': 'string',
-            'allowed': ['user', 'level-server', 'moderator', 'admin'],
+            'allowed': [
+                'user', 'level-server', 'moderator', 'admin', 'm1ch3l',
+                'authproxy', 'hypervisor',
+            ],
             'default': 'user',
             # chmod 600
+        },
+        'pnj': {
+            'type': 'boolean',
+            'default': False,
         },
         'gravatar_hash': {
             'type': 'string',
@@ -1816,12 +1823,14 @@ users = {
                     'password_salt': 0,
                     'student_id': 0,
                     'visibility': 0,
+                    'pnj': 0,
                 },
                 'filter': {
-                    # 'role': {'$in': ['user', 'moderator']},
+                    'role': 'user',
                     'active': True,
+                    # 'blocked': False,
                     # 'visibility': 'public',
-                    'role': {'$nin': ['level-server']},
+                    # 'pnj': False,
                 },
             },
             'public_methods': [],
@@ -1837,6 +1846,7 @@ users = {
                     'password_salt': 0,
                     'myself': 0,
                     'active': 0,
+                    'pnj': 0,
                     '_schema_version': 0,
                 }
             },
@@ -1845,6 +1855,25 @@ users = {
             'allowed_item_read_roles': ['user', 'admin'],
             'allowed_write_roles': ['user', 'admin'],
             'allowed_item_write_roles': ['user', 'admin'],
+        },
+        'pnjs': {
+            'datasource': {
+                'source': 'raw-users',
+                'projection': {
+                    'email_verification_token': 0,
+                    'password_salt': 0,
+                    'password': 0,
+                    '_schema_version': 0,
+                },
+                'filter': {
+                    # 'pnj': True,
+                },
+            },
+            'auth_field': 'myself',
+            'allowed_read_roles': ['admin'],
+            'allowed_item_read_roles': ['admin'],
+            'allowed_write_roles': ['admin'],
+            'allowed_item_write_roles': ['admin'],
         },
     },
 }
