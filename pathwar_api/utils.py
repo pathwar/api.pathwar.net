@@ -6,6 +6,12 @@ import urllib
 from flask import current_app
 
 
+def mongo_list_to_dict(mongo_list):
+    return {
+        entry['_id']: entry for entry in mongo_list
+    }
+
+
 def field_changed(field, payload, original):
     return field in payload and payload[field] != original[field]
 

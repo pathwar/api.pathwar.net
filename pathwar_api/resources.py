@@ -1123,6 +1123,8 @@ organization_statistics = {
         'bronze_medals': {'type': 'integer', 'default': 0},
         'achievements': {'type': 'integer', 'default': 0},
         'coupons': {'type': 'integer', 'default': 0},
+        'bought_levels': {'type': 'integer', 'default': 0},
+        'finished_levels': {'type': 'integer', 'default': 0},
     },
 }
 

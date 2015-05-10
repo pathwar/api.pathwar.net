@@ -114,9 +114,9 @@ class BaseModel(object):
         )
 
     @classmethod
-    def find(cls, lookup, projection=None, raw=False):
-        res = current_app.data.driver.db[cls.mongo_resource()] \
-                                     .find(lookup, projection)
+    def find(cls, lookup=None, projection=None, raw=False):
+        mongo_resource = current_app.data.driver.db[cls.mongo_resource()]
+        res = mongo_resource.find(lookup, projection)
         if raw:
             return res
         return list(res)
