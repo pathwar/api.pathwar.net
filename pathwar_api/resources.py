@@ -429,6 +429,37 @@ level_instance_users = {
 }
 
 
+global_statistics = {
+    'item_title': 'global statistics',
+
+    # collection
+    'resource_methods': ['GET', 'POST'],
+    'public_methods': [],
+    'allowed_read_roles': ['user', 'moderator', 'admin'],
+    'allowed_write_roles': ['admin'],
+    # item
+    'item_methods': ['GET', 'PATCH'],
+    'public_item_methods': [],
+    'allowed_item_read_roles': ['user', 'moderator', 'admin'],
+    'allowed_item_write_roles': ['admin'],
+
+    'cache_control': 'private, no-cache, no-store, must-revalidate',
+
+    'schema': {
+        'achievements': { 'type': 'integer', 'default': 0 },
+        'coupons': { 'type': 'integer', 'default': 0 },
+        'expired_coupons': { 'type': 'integer', 'default': 0 },
+        'level_bought': { 'type': 'integer', 'default': 0 },
+        'level_finished': { 'type': 'integer', 'default': 0 },
+        'levels': { 'type': 'integer', 'default': 0 },
+        'organization_achievements': { 'type': 'integer', 'default': 0 },
+        'organization_coupons': { 'type': 'integer', 'default': 0 },
+        'organizations': { 'type': 'integer', 'default': 0 },
+        'users': { 'type': 'integer', 'default': 0 },
+    },
+}
+
+
 level_statistics = {
     'item_title': 'level statistics',
 
@@ -1094,6 +1125,22 @@ organization_statistics = {
         'bronze_medals': {'type': 'integer', 'default': 0},
         'achievements': {'type': 'integer', 'default': 0},
         'coupons': {'type': 'integer', 'default': 0},
+        'bought_levels': {'type': 'integer', 'default': 0},
+        'finished_levels': {'type': 'integer', 'default': 0},
+    },
+    'views': {
+        'organization-statistics-2': {
+            'datasource': {
+                'source': 'raw-organization-statistics',
+                'projection': {
+                    '_schema_version': 0,
+                },
+                'default_sort': [
+                    ('score', 1),
+                    ('cash', 1),
+                ],
+            },
+        },
     },
 }
 
@@ -2006,6 +2053,50 @@ whoswho_attempts = {
 }
 
 
+tasks = {
+    'item_title': 'task',
+    'resource_title': 'tasks',
+
+    # collection
+    'resource_methods': ['GET', 'POST'],
+    'public_methods': [],
+    'allowed_read_roles': ['admin'],
+    'allowed_write_roles': ['admin'],
+    # item
+    'item_methods': ['GET'],
+    'public_item_methods': [],
+    'allowed_item_read_roles': ['admin'],
+    'allowed_item_write_roles': ['admin'],
+
+    'schema': {
+        'job': {
+            'type': 'string',
+            'required': True,
+        },
+        'args': {
+            'type': 'list',
+        },
+        'duration': {
+            'type': 'float',
+        },
+        'status': {
+            'type': 'string',
+            'default': 'pending',
+            'allowed': ['pending', 'failed', 'succeed'],
+            'readonly': True,
+        },
+        'author': {
+            'type': 'uuid',
+            'data_relation': {
+                'resource': 'raw-users',
+                'field': '_id',
+                'embeddable': False,
+            },
+        },
+    },
+}
+
+
 DOMAIN = {}
 
 
@@ -2013,6 +2104,7 @@ BASE_RESOURCES = {
     'achievements': achievements,
     'activities': activities,
     'coupons': coupons,
+    'global-statistics': global_statistics,
     'infrastructure-hijacks': infrastructure_hijacks,
     'items': items,
     'level-hints': level_hints,
@@ -2037,6 +2129,7 @@ BASE_RESOURCES = {
     'user-organization-invites': user_organization_invites,
     'user-tokens': user_tokens,
     'users': users,
+    'tasks': tasks,
     'whoswho-attempts': whoswho_attempts,
 }
 

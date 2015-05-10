@@ -119,11 +119,44 @@ class BaseModel(object):
             where, data, upsert=upsert, multi=multi
         )
 
+    def find(cls, lookup=None, projection=None, raw=False):
+        mongo_resource = current_app.data.driver.db[cls.mongo_resource()]
+        res = mongo_resource.find(lookup, projection)
+        if raw:
+            return res
+        return list(res)
+
     @classmethod
-    def find(cls, lookup, projection=None):
-        return list(current_app.data.driver.db[cls.mongo_resource()].find(
-            lookup, projection
-        ))
+    def last_record(cls):
+        mongo_resource = current_app.data.driver.db[cls.mongo_resource()]
+        res = list(mongo_resource.find(limit=1, sort=[('_created', -1)]))
+        if len(res):
+            return res[0]
+        return None
+
+    @classmethod
+    def remove(cls, lookup, show_stats=True):
+        mongo_resource = current_app.data.driver.db[cls.mongo_resource()]
+
+        if show_stats:
+            total_count = mongo_resource.count()
+            remove_count = mongo_resource.find(lookup).count()
+            current_app.logger.warn(
+                "removing %d of %d '%s' entries",
+                remove_count, total_count, cls.mongo_resource()
+            )
+
+        return mongo_resource.remove(lookup)
+
+    @classmethod
+    def count(cls, lookup=None):
+        return current_app.data.driver.db[cls.mongo_resource()] \
+                                      .find(lookup) \
+                                      .count()
+
+    @classmethod
+    def all(cls):
+        return list(current_app.data.driver.db[cls.mongo_resource()].find())
 
     @classmethod
     def find_one(cls, lookup, projection=None):
@@ -391,6 +424,26 @@ If you received this email by mistake, simply delete it. You won't be subscribed
             subject='Password recover verification',
             recipients=[User.get_by_id(item['user'])]
         )
+
+
+class Task(BaseModel):
+    resource = 'tasks'
+
+    def on_pre_post_item(self, request, item):
+        if 'job' not in item:
+            abort(422, 'job is required')
+
+        if item['job'] not in current_app.jobs:
+            abort(422, 'unknown job')
+
+    def on_insert(self, item):
+        super(Task, self).on_insert(item)
+        item['status'] = 'pending'
+        item['author'] = request_get_user(flask_request)['_id']
+
+    def on_inserted(self, item):
+        job = current_app.jobs[item['job']](item['_id'])
+        job.call()
 
 
 class User(BaseModel):
@@ -1218,6 +1271,10 @@ class Level(BaseModel):
         })
 
 
+class GlobalStatistics(BaseModel):
+    resource = 'global-statistics'
+
+
 class LevelStatistics(BaseModel):
     resource = 'level-statistics'
 
@@ -1473,12 +1530,12 @@ base_models = [
     Achievement,
     Activity,
     Coupon,
+    GlobalStatistics,
     InfrastructureHijack,
     Item,
     Level,
     Level,
     LevelHint,
-    LevelInstance,
     LevelInstance,
     LevelInstanceUser,
     LevelStatistics,
@@ -1494,8 +1551,7 @@ base_models = [
     PasswordRecoverRequest,
     Server,
     Session,
-    User,
-    User,
+    Task,
     User,
     UserHijackProof,
     UserNotification,
