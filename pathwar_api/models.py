@@ -1202,6 +1202,15 @@ class Level(BaseModel):
         })
 
 
+class GlobalStatistics(BaseModel):
+    resource = 'global-statistics'
+
+    @classmethod
+    def latest(cls):
+        # FIXME: return latest item
+        return None
+
+
 class LevelStatistics(BaseModel):
     resource = 'level-statistics'
 
@@ -1451,6 +1460,7 @@ base_models = [
     Achievement,
     Activity,
     Coupon,
+    GlobalStatistics,
     InfrastructureHijack,
     Item,
     Level,
