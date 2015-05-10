@@ -119,6 +119,7 @@ class BaseModel(object):
             where, data, upsert=upsert, multi=multi
         )
 
+    @classmethod
     def find(cls, lookup=None, projection=None, raw=False):
         mongo_resource = current_app.data.driver.db[cls.mongo_resource()]
         res = mongo_resource.find(lookup, projection)
