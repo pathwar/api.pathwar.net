@@ -1373,6 +1373,10 @@ class OrganizationItem(BaseModel):
     resource = 'organization-items'
 
 
+class OrganizationBonus(BaseModel):
+    resource = 'organization-bonuses'
+
+
 class OrganizationAchievement(BaseModel):
     resource = 'organization-achievements'
 
